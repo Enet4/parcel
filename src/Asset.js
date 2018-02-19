@@ -17,7 +17,11 @@ let ASSET_ID = 1;
  */
 class Asset {
   constructor(name, pkg, options) {
-    this.id = ASSET_ID++;
+    if (options.overrideId) {
+      this.id = options.overrideId;
+    } else {
+      this.id = ASSET_ID++;
+    }
     this.name = name;
     this.basename = path.basename(this.name);
     this.relativeName = path.relative(options.rootDir, this.name);
